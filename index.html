@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>计时网站</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="image.jpg" alt="图片">
+  <h1 id="timer"></h1>
+  <script>
+    // 设置目标日期为2023年9月24日
+    const targetDate = new Date('2023-09-24T00:00:00Z');
+
+    function updateTimer() {
+      // 计算当前时间和目标日期之间的时间差
+      const timeDiff = targetDate - new Date();
+
+      // 将时间差转换为天、小时、分钟和秒
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      // 更新页面上的计时器
+      document.getElementById('timer').textContent = ` 我们认识了${days}天${hours}小时${minutes}分钟${seconds}秒`;
+    }
+
+    // 每秒钟更新一次计时器
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+
+</html>
