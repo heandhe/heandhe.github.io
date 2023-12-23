@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时网站</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #logo {
+            width: 300px;
+            height: 300px;
+        }
+
+        #countdown {
+            font-size: 1.25em;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<img id="logo" src="logo3.jpg" alt="Logo">
+
+<h3>我们认识了</h3><div id="countdown"></div>
+
+<script>
+    // 计算剩余时间
+    function calculateTimeRemaining() {
+        var endDate = new Date('2023-09-24T00:00:00Z'); // 设置截止日期
+        var currentDate = new Date();
+        var timeRemaining = endDate - currentDate;
+
+        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        return {
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+
+    // 更新倒计时显示
+    function updateCountdown() {
+        var countdownElement = document.getElementById('countdown');
+        var timeRemaining = calculateTimeRemaining();
+
+        countdownElement.innerHTML = timeRemaining.days + '天 ' +
+            timeRemaining.hours + '小时 ' +
+            timeRemaining.minutes + '分钟 ' +
+            timeRemaining.seconds + '秒';
+    }
+
+    // 每秒更新一次倒计时
+    setInterval(updateCountdown, 1000);
+
+    // 初始加载
+    updateCountdown();
+</script>
+
+</body>
+</html>
